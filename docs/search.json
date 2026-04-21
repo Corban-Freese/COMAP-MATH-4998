@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Corban-FinalWebsite",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "comap.html",
+    "href": "comap.html",
+    "title": "Corban-FinalWebsite",
+    "section": "",
+    "text": "Let’s get our data cleaned\n\nimport pandas as pd\n\n\n# To get just the Medal Counts description part:\nmedal_desc = pd.read_csv('2025_Problem_C_Data/data_dictionary.csv', skiprows=1, nrows=7, encoding = 'latin1')\n\n# To get the Hosts description:\n# You'd count the rows from the top to where \"summerOly_hosts.csv\" starts\nhosts_desc = pd.read_csv('2025_Problem_C_Data/data_dictionary.csv', skiprows=12, nrows=3, encoding = 'latin1')\nathletes = pd.read_csv(\"2025_Problem_C_Data/summerOly_athletes.csv\")\nhosts = pd.read_csv(\"2025_Problem_C_Data/summerOly_hosts.csv\")\nmedal_counts = pd.read_csv(\"2025_Problem_C_Data/summerOly_medal_counts.csv\")\n# 1. Use encoding='latin1' or 'cp1252' to handle the '' characters\n# 2. Use nrows to stop reading before the \"Data set of current...\" paragraph begins\ndf_programs = pd.read_csv('2025_Problem_C_Data/summerOly_programs.csv', \n    encoding='latin1', \n    nrows=75  # Adjust this number to the last row of actual data\n    )\n\n\nhistory = medal_counts.merge(hosts, on=\"Year\", how=\"left\")\nathlete_counts = athletes.groupby(['Year', 'Team']).size().reset_index(name='Total_Athletes')\nmedalist_filter = athletes[athletes['Medal'] != 'No medal']\nmedalist_counts = medalist_filter.groupby(['Year', 'Team']).size().reset_index(name='Medal_Winning_Athletes')\n\n# 4. Merge these two summaries together\nathlete_features = athlete_counts.merge(medalist_counts, on=['Year', 'Team'], how='left')\n\n# 5. Calculate Efficiency (Percentage of athletes who won a medal)\nathlete_features['Athlete_Efficiency'] = athlete_features['Medal_Winning_Athletes'] / athlete_features['Total_Athletes']\n\n\n# Assuming 'history' is the table you made by joining medal_counts and hosts\nfinal_training_data = history.merge(athlete_features, left_on=['Year', 'NOC'], right_on = ['Year', 'Team'], how='left')\nfinal_training_data = final_training_data.drop(columns=['Team'])\nfinal_training_data = final_training_data.dropna(subset=['Total_Athletes'])\nfinal_training_data.head(15)\n\n\n\n\n\n\n\n\nRank\nNOC\nGold\nSilver\nBronze\nTotal\nYear\nHost\nTotal_Athletes\nMedal_Winning_Athletes\nAthlete_Efficiency\n\n\n\n\n0\n1\nUnited States\n11\n7\n2\n20\n1896\nAthens, Greece\n27.0\n20.0\n0.740741\n\n\n1\n2\nGreece\n10\n18\n19\n47\n1896\nAthens, Greece\n140.0\n44.0\n0.314286\n\n\n2\n3\nGermany\n6\n5\n2\n13\n1896\nAthens, Greece\n93.0\n31.0\n0.333333\n\n\n3\n4\nFrance\n5\n4\n2\n11\n1896\nAthens, Greece\n26.0\n11.0\n0.423077\n\n\n4\n5\nGreat Britain\n2\n3\n2\n7\n1896\nAthens, Greece\n23.0\n7.0\n0.304348\n\n\n5\n6\nHungary\n2\n1\n3\n6\n1896\nAthens, Greece\n18.0\n6.0\n0.333333\n\n\n6\n7\nAustria\n2\n1\n2\n5\n1896\nAthens, Greece\n8.0\n5.0\n0.625000\n\n\n7\n8\nAustralia\n2\n0\n0\n2\n1896\nAthens, Greece\n4.0\n2.0\n0.500000\n\n\n8\n9\nDenmark\n1\n2\n3\n6\n1896\nAthens, Greece\n15.0\n6.0\n0.400000\n\n\n9\n10\nSwitzerland\n1\n2\n0\n3\n1896\nAthens, Greece\n8.0\n3.0\n0.375000\n\n\n11\n1\nFrance\n27\n39\n37\n103\n1900\nParis, France\n679.0\n75.0\n0.110457\n\n\n12\n2\nUnited States\n19\n14\n15\n48\n1900\nParis, France\n114.0\n45.0\n0.394737\n\n\n13\n3\nGreat Britain\n15\n7\n9\n31\n1900\nParis, France\n54.0\n22.0\n0.407407\n\n\n15\n5\nBelgium\n6\n7\n4\n17\n1900\nParis, France\n60.0\n14.0\n0.233333\n\n\n16\n6\nSwitzerland\n6\n2\n1\n9\n1900\nParis, France\n43.0\n15.0\n0.348837\n\n\n\n\n\n\n\nWe have a bunch of individual athletes who are not apart of a country. We are going to drop them."
+  }
+]
