@@ -3,6 +3,8 @@ title: "Hack-a-thon"
 subtitle: "Let the Games Begin"
 author: "Corban Freese"
 date: last-modified
+execute:
+  cache: true
 format:
   html:
     theme: cosmo
