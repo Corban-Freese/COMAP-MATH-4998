@@ -370,42 +370,40 @@ print(leaderboard_2028[['NOC', 'Predicted_Gold', 'Predicted_Total']].head(20).to
 sns.set_theme(style="whitegrid")
 plot_data = leaderboard_2028.head(15)
 
-# Create a figure with 1 row and 2 columns
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
+# --- CHANGE: Set to 2 rows, 1 column and flip figsize (width, height) ---
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 14))
 
-# --- CHART 1: TOTAL MEDALS (Left Side) ---
+# --- CHART 1: TOTAL MEDALS (Top) ---
 sns.barplot(
     x='Predicted_Total', 
     y='NOC', 
     data=plot_data.sort_values('Predicted_Total', ascending=False),
     palette='viridis',
-    ax=ax1  # Tells seaborn to put this on the first subplot
+    ax=ax1
 )
 ax1.set_title('Total Medals (LA 2028)', fontsize=14, fontweight='bold')
 ax1.set_xlabel('Predicted Total Medals')
 ax1.set_ylabel('Country (NOC)')
 
-# Add labels
 for i in ax1.containers:
     ax1.bar_label(i, padding=3)
 
-# --- CHART 2: GOLD MEDALS (Right Side) ---
+# --- CHART 2: GOLD MEDALS (Bottom) ---
 sns.barplot(
     x='Predicted_Gold', 
     y='NOC', 
     data=plot_data.sort_values('Predicted_Gold', ascending=False),
     palette='magma',
-    ax=ax2  # Tells seaborn to put this on the second subplot
+    ax=ax2
 )
 ax2.set_title('Gold Medals (LA 2028)', fontsize=14, fontweight='bold')
 ax2.set_xlabel('Predicted Gold Medals')
-ax2.set_ylabel('') # Remove Y-label on the second chart to save space
+ax2.set_ylabel('Country (NOC)') # Re-added Y-label since they are stacked
 
-# Add labels
 for i in ax2.containers:
     ax2.bar_label(i, padding=3)
 
-# Adjust layout so they don't overlap
+# Adjust layout to prevent the title of the bottom plot from hitting the top plot
 plt.tight_layout()
 plt.show()
 ```
