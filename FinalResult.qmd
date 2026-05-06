@@ -3,7 +3,7 @@ title: "Olympic Medal Projections: LA 2028"
 subtitle: "Predicting Athletic Dominance through Machine Learning"
 author: "Corban Freese"
 execute:
-  cache: true
+  freeze: auto
 format: 
   html:
     code-fold: true
