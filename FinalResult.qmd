@@ -1,0 +1,6 @@
+---
+title: "Olympic Medal Projections"
+format: 
+  html:
+    code-fold: true
+---

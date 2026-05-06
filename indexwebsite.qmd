@@ -1,0 +1,9 @@
+---
+title: "Corban Freese   Final-Website"
+about:
+    template: jolla
+---
+
+Hello! I am a senior at The College of Idaho. I have played football here for 3 years helping our team go to the semifinal game 2 times. I am majoring in Math-Physics and plan to work as a civil engineer. Here is my website for Math4025 Statistical Machine Learning with Dr. Friedlander. Explore my projects, resume, and cover letter.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

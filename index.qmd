@@ -1,9 +1,0 @@
----
-title: "Corban-FinalWebsite"
----
-
-This is a Quarto website.
-
-I want this to work
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

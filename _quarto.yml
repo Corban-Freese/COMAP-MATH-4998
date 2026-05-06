@@ -7,6 +7,10 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: FinalResult.qmd
+        text: Olympic Projections
+      - href: Hack-a-thon/HackFinal.qmd
+        text: Hack-a-Thon
       - href: pdf/Resume-for-class.pdf
         text: Resume
       - href: pdf/Cover-letter.pdf
@@ -15,7 +19,7 @@ website:
 
 format:
   html:
-    theme: cosmos
+    theme: solar
     css: styles.css
     toc: true
 

@@ -1,0 +1,130 @@
+---
+title: "Hack-a-thon"
+subtitle: "Let the Games Begin"
+author: "Corban Freese"
+date: last-modified
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: show
+    self-contained: true
+---
+
+## Loading Packages
+
+```{python}
+import pandas as pd
+import numpy as np
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer, KNNImputer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, PowerTransformer
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score, GridSearchCV, RepeatedStratifiedKFold
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+```
+
+```{python}
+greenfin_train = pd.read_csv("greenfin_train.csv")
+X_test = pd.read_csv("greenfin_test.csv")
+original_test_data = pd.read_csv("greenfin_test.csv")
+
+X_train = greenfin_train.drop(columns = ['loan_outcome'])
+y_train = greenfin_train['loan_outcome']
+```
+
+## Data Cleaning
+
+* I dropped the ID columns since they were not needed.
+* I added a year obligation over annual income to see how much money per year was already going to previous obligations.
+* I added a late payment over num credit lines to see if people who added lots of credit lines also paid late.
+
+```{python}
+X_train['year_debt_to_income_no_loan'] = X_train['monthly_obligations'] * 12 / X_train['annual_income']
+X_test['year_debt_to_income_no_loan'] = X_test['monthly_obligations'] * 12 / X_test['annual_income']
+
+X_train['late_payments_per_line'] =  X_train['num_late_payments'] / X_train['num_credit_lines']
+X_test['late_payments_per_line'] =  X_test['num_late_payments'] / X_test['num_credit_lines']
+
+X_train = X_train.drop(columns = ['loan_id'])
+X_test = X_test.drop(columns = ['loan_id'])
+```
+
+## Preprocessing
+
+* I wanted to see if there were any skewed values so I could use a Yeo-Johnson transformation on them, which makes the data a normal distribution.
+* I picked mean for my simpleimputer because I ran my entire process and mean gave me the quickest and best accuracy.
+* I ran a simple impute just in case for the cat variables and then a onehotencode because there were only regular categorical (no ordinal) variables.
+
+```{python}
+cat = [
+    'home_ownership',
+    'loan_purpose',
+    'state_region'
+]
+skew = ['year_debt_to_income_no_loan', 'num_late_payments', 'annual_income', 'loan_amount', 'late_payments_per_line']
+num = ['debt_to_income', 'num_credit_lines', 'employment_years', 'has_mortgage', 'monthly_obligations',
+       'age', 'credit_score', 'loan_term_months']
+skew_values = X_train[num].skew().sort_values(ascending=False)
+
+
+num_transformer = Pipeline([
+    ('imputer', KNNImputer(n_neighbors=5)),
+    ('scaler', StandardScaler())
+])
+
+skew_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy = 'median')),
+    ('yeo_johnson', PowerTransformer(method = 'yeo-johnson'))
+])
+
+cat_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy = 'constant', fill_value='missing')),
+    ('onehot', OneHotEncoder(handle_unknown = 'ignore'))
+])
+
+preprocessor = ColumnTransformer([
+    ('num', num_transformer, num),
+    ('skew', skew_transformer, skew),
+    ('cat', cat_transformer, cat)
+])
+```
+
+## Model Fit
+
+* I used a 5-fold cross-validation strategy repeated 3 times which made sure that each class was represented proportionally.
+* I tried to run logisticregression, knnclassifier, and randomforestclassifier but I ultimately chose randomforest because it was significantly better.
+* The final model was tuned by optimizing the number of trees, the max depth, and the number of features of each split.
+
+```{python}
+final_rf_model = RandomForestClassifier(
+    n_estimators=200,
+    max_depth=None,  
+    max_features=3,
+    random_state=4025
+)
+
+rf_pipeline = Pipeline([
+    ('preprocessor', preprocessor),
+    ('rf', final_rf_model)
+])
+```
+
+```{python}
+rf_pipeline.fit(X_train, y_train)
+```
+
+## Generation Prediction
+
+```{python}
+predictions = rf_pipeline.predict(X_test)
+
+submission = pd.DataFrame({
+    "loan_id": original_test_data["loan_id"],
+    "loan_outcome": predictions
+})
+
+submission.to_csv("my_predictions.csv", index=False)
+```
