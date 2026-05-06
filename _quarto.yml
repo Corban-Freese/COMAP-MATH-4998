@@ -5,17 +5,18 @@ website:
   title: "Corban-FinalWebsite"
   navbar:
     left:
-      - href: /index.qmd
+      - href: index.qmd
         text: Home
       - href: FinalResult.qmd
         text: Olympic Projections
-      - href: Hack-a-thon/HackFinal.qmd
+      - href: Hack_a_thon/HackFinal.qmd
         text: Hack-a-Thon
       - href: pdf/Resume-for-class.pdf
         text: Resume
       - href: pdf/Cover-letter.pdf
         text: Cover Letter
-      - about.qmd
+      - href: about.qmd
+        text: About
 
 format:
   html:
