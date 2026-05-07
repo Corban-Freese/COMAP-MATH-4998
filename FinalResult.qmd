@@ -711,23 +711,31 @@ silver = top_20_events['Predicted_Silver'].values
 bronze = top_20_events['Predicted_Bronze'].values
 y_pos = np.arange(len(labels))
 
-# 3. Create the stacked bar chart
-plt.figure(figsize=(14, 10))
+# 3. Create the stacked bar chart using an explicit axes object
+fig, ax = plt.subplots(figsize=(14, 10))
 
-# Plot Bronze first, then stack Silver on top, then Gold on top of that
-plt.barh(y_pos, bronze, color='#CD7F32', label='Bronze', edgecolor='white')
-plt.barh(y_pos, silver, left=bronze, color='#C0C0C0', label='Silver', edgecolor='white')
-plt.barh(y_pos, gold, left=bronze + silver, color='#FFD700', label='Gold', edgecolor='white')
+# Plot Bronze first, then stack Silver, then Gold, saving each to a variable
+bronze_bars = ax.barh(y_pos, bronze, color='#CD7F32', label='Bronze', edgecolor='white')
+silver_bars = ax.barh(y_pos, silver, left=bronze, color='#C0C0C0', label='Silver', edgecolor='white')
+gold_bars = ax.barh(y_pos, gold, left=bronze + silver, color='#FFD700', label='Gold', edgecolor='white')
+
+# --- NEW: Add the numbers to the center of each bar section ---
+# The lambda function ensures that '0' values are left blank for a cleaner look
+ax.bar_label(bronze_bars, label_type='center', color='white', fontweight='bold', fmt=lambda x: f'{x:g}' if x > 0 else '')
+ax.bar_label(silver_bars, label_type='center', color='black', fontweight='bold', fmt=lambda x: f'{x:g}' if x > 0 else '')
+ax.bar_label(gold_bars, label_type='center', color='black', fontweight='bold', fmt=lambda x: f'{x:g}' if x > 0 else '')
 
 # 4. Add styling and labels
-plt.yticks(y_pos, labels, fontsize=11)
-plt.gca().invert_yaxis()  # Highest gold count at the top
-plt.xlabel('Projected Number of Medals', fontsize=12, fontweight='bold')
-plt.title('🔥 Top 20 Projected Events for 2028: Country + Sport Dominance 🔥', fontsize=16, fontweight='bold', pad=20)
-plt.legend(title="Medal Type", loc='lower right', frameon=True, shadow=True)
+ax.set_yticks(y_pos)
+ax.set_yticklabels(labels, fontsize=11)
+ax.invert_yaxis()  # Highest gold count at the top
+
+ax.set_xlabel('Projected Number of Medals', fontsize=12, fontweight='bold')
+ax.set_title('🔥 Top 20 Projected Events for 2028: Country + Sport Dominance 🔥', fontsize=16, fontweight='bold', pad=20)
+ax.legend(title="Medal Type", loc='lower right', frameon=True, shadow=True)
 
 # Add gridlines for the X-axis to make it easier to read counts
-plt.grid(axis='x', linestyle='--', alpha=0.7)
+ax.grid(axis='x', linestyle='--', alpha=0.7)
 
 plt.tight_layout()
 plt.show()

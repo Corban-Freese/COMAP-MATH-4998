@@ -194,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Let’s get our data cleaned</p>
-<div id="c13dddf5" class="cell" data-execution_count="38">
+<div id="c13dddf5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier, KNeighborsRegressor</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="29560518" class="cell" data-execution_count="1">
+<div id="29560518" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To get just the Medal Counts description part:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>medal_desc <span class="op">=</span> pd.read_csv(<span class="st">'2025_Problem_C_Data/data_dictionary.csv'</span>, skiprows<span class="op">=</span><span class="dv">1</span>, nrows<span class="op">=</span><span class="dv">7</span>, encoding <span class="op">=</span> <span class="st">'latin1'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -229,22 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    encoding<span class="op">=</span><span class="st">'latin1'</span>, </span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    nrows<span class="op">=</span><span class="dv">75</span>  <span class="co"># Adjust this number to the last row of actual data</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># To get just the Medal Counts description part:</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span> medal_desc = <span class="ansi-yellow-bg">pd</span>.read_csv(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">2025_Problem_C_Data/data_dictionary.csv</span><span class="ansi-yellow-fg">'</span>, skiprows=<span class="ansi-green-fg">1</span>, nrows=<span class="ansi-green-fg">7</span>, encoding = <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">latin1</span><span class="ansi-yellow-fg">'</span>)
-<span class="ansi-green-fg">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># To get the Hosts description:</span>
-<span class="ansi-green-fg">      5</span> <span style="font-style:italic;color:rgb(95,135,135)"># You'd count the rows from the top to where "summerOly_hosts.csv" starts</span>
-<span class="ansi-green-fg">      6</span> hosts_desc = pd.read_csv(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">2025_Problem_C_Data/data_dictionary.csv</span><span class="ansi-yellow-fg">'</span>, skiprows=<span class="ansi-green-fg">12</span>, nrows=<span class="ansi-green-fg">3</span>, encoding = <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">latin1</span><span class="ansi-yellow-fg">'</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'pd' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="8cd70487" class="cell" data-execution_count="40">
+<div id="8cd70487" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load Data &amp; Create Base History (Assuming data is already read in)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> medal_counts.merge(hosts, on<span class="op">=</span><span class="st">"Year"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>history[<span class="st">'is_Host'</span>] <span class="op">=</span> (history[<span class="st">'NOC'</span>] <span class="op">==</span> history[<span class="st">'Host'</span>]).astype(<span class="bu">int</span>)</span>
@@ -314,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>final_training_data <span class="op">=</span> final_training_data.drop(columns<span class="op">=</span>[<span class="st">'Current_Efficiency'</span>])</span>
 <span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>final_training_data.head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -685,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I want to graph the countries total medals vs which year</p>
 <section id="total-medals-per-year" class="level2">
 <h2 class="anchored" data-anchor-id="total-medals-per-year">Total medals per year</h2>
-<div id="1e0d3169" class="cell" data-execution_count="41">
+<div id="1e0d3169" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the Top 10 countries by all-time Total medals</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We use .tolist() so we can easily append another country to it</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>top_nocs <span class="op">=</span> final_training_data.groupby(<span class="st">'NOC'</span>)[<span class="st">'Total'</span>].<span class="bu">sum</span>().nlargest(<span class="dv">10</span>).index.tolist()</span>
@@ -740,7 +726,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="training" class="level2">
 <h2 class="anchored" data-anchor-id="training">Training</h2>
-<div id="bcb8f361" class="cell" data-execution_count="42">
+<div id="bcb8f361" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">'Total_Athletes'</span>, <span class="st">'Total_Historical_Efficiency'</span>, <span class="st">'is_Host'</span>, <span class="st">'Male_Athletes'</span>, <span class="st">'Female_Athletes'</span>, <span class="st">'Unique_Sports'</span>, <span class="st">'Lag_1_Efficiency'</span>, <span class="st">'Lag_2_Efficiency'</span>, <span class="st">'Lag_3_Efficiency'</span>, <span class="st">'Lag_1_Total_Medals'</span>, <span class="st">'Lag_2_Total_Medals'</span>, <span class="st">'Lag_3_Total_Medals'</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> final_training_data[features]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -753,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="linear-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="linear-pipeline">Linear Pipeline</h2>
-<div id="8aff4670" class="cell" data-execution_count="43">
+<div id="8aff4670" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> [</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total_Athletes'</span>, </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total_Historical_Efficiency'</span>, </span>
@@ -847,7 +833,7 @@ MAE:      2.63 medals</code></pre>
 </section>
 <section id="knn-model" class="level2">
 <h2 class="anchored" data-anchor-id="knn-model">KNN Model</h2>
-<div id="c5c3d3e7" class="cell" data-execution_count="44">
+<div id="c5c3d3e7" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knn_pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor),</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'regressor'</span>, KNeighborsRegressor())</span>
@@ -927,7 +913,7 @@ MAE:      2.26 medals</code></pre>
 </section>
 <section id="random-forrest-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="random-forrest-pipeline">Random Forrest Pipeline</h2>
-<div id="11dceec9" class="cell" data-execution_count="45">
+<div id="11dceec9" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rf_pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor),</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'rf'</span>, RandomForestRegressor())</span>
@@ -984,18 +970,18 @@ MAE:      2.26 medals</code></pre>
 ===== RANDOM FOREST REGRESSOR RESULTS =====
 
 [TOTAL MEDALS]
-R² Score: 0.827
-RMSE:     9.10 medals
-MAE:      4.65 medals
+R² Score: 0.833
+RMSE:     8.95 medals
+MAE:      4.58 medals
 
 [GOLD MEDALS]
-R² Score: 0.753
-RMSE:     4.39 medals
-MAE:      2.20 medals</code></pre>
+R² Score: 0.758
+RMSE:     4.34 medals
+MAE:      2.17 medals</code></pre>
 </div>
 </div>
 <p>This model improved a little bit getting us a higher r2 but we are missing by more on average than the KNN for total medals. Our Gold medals had a much better r2.</p>
-<div id="975230ec" class="cell" data-execution_count="46">
+<div id="975230ec" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Extract the specific pieces from your best pipeline</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># best_rf is your Pipeline object. We need the preprocessor and the actual Random Forest model.</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> best_rf.named_steps[<span class="st">'preprocessor'</span>]</span>
@@ -1030,7 +1016,7 @@ MAE:      2.20 medals</code></pre>
 </div>
 </div>
 </div>
-<div id="f921143e" class="cell" data-execution_count="47">
+<div id="f921143e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>single_tree <span class="op">=</span> rf_model.estimators_[<span class="dv">0</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">10</span>))</span>
@@ -1055,7 +1041,7 @@ MAE:      2.20 medals</code></pre>
 </section>
 <section id="histgrad" class="level2">
 <h2 class="anchored" data-anchor-id="histgrad">HistGrad</h2>
-<div id="ca820eb5" class="cell" data-execution_count="48">
+<div id="ca820eb5" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>num_transformer_no <span class="op">=</span> Pipeline([</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scaler'</span>, StandardScaler())</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>])</span>
@@ -1143,7 +1129,7 @@ MAE:      2.20 medals</code></pre>
 </div>
 </div>
 <p>Now lets compare the models</p>
-<div id="d9910989" class="cell" data-execution_count="49">
+<div id="d9910989" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hist_name <span class="op">=</span> <span class="st">"HistGradient (WITH Imputer)"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hist_r2_tot <span class="op">=</span> results[hist_name][<span class="st">'Total_R2'</span>]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>hist_rmse_tot <span class="op">=</span> results[hist_name][<span class="st">'Total_RMSE'</span>]</span>
@@ -1193,7 +1179,7 @@ MAE:      2.20 medals</code></pre>
                 Model  Total_R²  Total_RMSE  Total_MAE  Gold_R²  Gold_RMSE  Gold_MAE
     Linear Regression     0.745      11.053      5.895 0.671339   5.063189  2.628903
         KNN Regressor     0.778      10.307      5.162 0.720210   4.671610  2.257640
-        Random Forest     0.827       9.104      4.648 0.752565   4.393198  2.196126
+        Random Forest     0.833       8.947      4.577 0.758142   4.343411  2.174534
 HistGradient Boosting     0.802       9.724      5.053 0.714325   4.720481  2.382729</code></pre>
 </div>
 </div>
@@ -1201,7 +1187,7 @@ HistGradient Boosting     0.802       9.724      5.053 0.714325   4.720481  2.38
 </section>
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section">2028</h2>
-<div id="657fefe9" class="cell" data-execution_count="50">
+<div id="657fefe9" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Isolate the 2024 data - this is our "launch pad" for 2028</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data_2024 <span class="op">=</span> final_training_data[final_training_data[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2024</span>].copy()</span>
@@ -1276,30 +1262,30 @@ HistGradient Boosting     0.802       9.724      5.053 0.714325   4.720481  2.38
 🇺🇸 OFFICIAL 2028 LOS ANGELES MEDAL PROJECTIONS (RANDOM FOREST) 🇺🇸
 ==================================================
           NOC  Predicted_Gold  Predicted_Total
-United States              43              121
-        China              39               96
-       France              24               65
-Great Britain              22               67
-    Australia              19               54
-        Japan              15               46
-      Germany              13               39
+United States              44              122
+        China              38               94
+       France              26               68
+Great Britain              22               65
+    Australia              18               52
+        Japan              15               45
         Italy              12               39
-  Netherlands              11               36
-       Canada               9               29
-  New Zealand               8               21
-      Hungary               7               20
-        Spain               6               23
-  South Korea               6               19
-       Brazil               5               21
+  Netherlands              12               38
+      Germany              12               36
+       Canada               9               30
+  South Korea               7               21
+  New Zealand               7               20
+        Spain               6               22
+      Hungary               6               19
+       Brazil               5               23
       Ukraine               4               14
        Poland               3               13
-      Belgium               3               11
   Switzerland               3               11
-   Kazakhstan               3               10</code></pre>
+        Kenya               3                9
+         Cuba               3                8</code></pre>
 </div>
 </div>
 <p>Now lets graph them to get a closer look</p>
-<div id="e355f6de" class="cell">
+<div id="e355f6de" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Prepare data for plotting (Top 15 Countries)</span></span>
@@ -1345,11 +1331,11 @@ Great Britain              22               67
 <span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Graphs have been saved as '2028_total_medals_projection.png' and '2028_gold_medals_projection.png'"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_6336\1908376634.py:8: FutureWarning: 
+<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_17044\1908376634.py:8: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
 
-C:\Users\cjfoo\AppData\Local\Temp\ipykernel_6336\1908376634.py:27: FutureWarning: 
+C:\Users\cjfoo\AppData\Local\Temp\ipykernel_17044\1908376634.py:27: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
 </code></pre>
@@ -1362,7 +1348,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
 <p>Now I want to build a model which will predict each sport</p>
-<div id="cfe8aa09" class="cell" data-execution_count="74">
+<div id="cfe8aa09" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Base Framework: Athletes &amp; Demographics per sport</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pivot 'Sex' to get Male and Female counts per sport</span></span>
@@ -1454,7 +1440,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>df_sport <span class="op">=</span> df_sport.drop(columns<span class="op">=</span>[<span class="st">'Host'</span>])</span>
 <span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a>df_sport.head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="74">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 
 
@@ -1772,7 +1758,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 </div>
-<div id="63050143" class="cell" data-execution_count="75">
+<div id="63050143" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">'Sport'</span>, <span class="st">'Team'</span>,<span class="st">'Total_Historical_Efficiency'</span>, <span class="st">'is_Host'</span>, <span class="st">'Male_Athletes'</span>, <span class="st">'Female_Athletes'</span>,  <span class="st">'Lag_1_Sport_Efficiency'</span>, <span class="st">'Lag_2_Sport_Efficiency'</span>,  <span class="st">'Lag_1_Sport_Medals'</span>, <span class="st">'Lag_2_Sport_Medals'</span>]</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df_sport[features]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1781,7 +1767,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>X_train_sport, X_test_sport, y_train_multi_sport, y_test_multi_sport <span class="op">=</span> train_test_split(X, y, train_size <span class="op">=</span> <span class="fl">.7</span>, random_state <span class="op">=</span> <span class="dv">4025</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d10413b6" class="cell" data-execution_count="76">
+<div id="d10413b6" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> [</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Total_Historical_Efficiency'</span>, </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Male_Athletes'</span>, </span>
@@ -1801,7 +1787,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 <section id="lr-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="lr-pipeline">Lr Pipeline</h2>
-<div id="97018c4a" class="cell" data-execution_count="83">
+<div id="97018c4a" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>numeric_transformer <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fills any blank numeric values with the median of that column</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'imputer'</span>, SimpleImputer(strategy<span class="op">=</span><span class="st">'median'</span>)), </span>
@@ -1910,7 +1896,7 @@ MAE:      0.67 medals</code></pre>
 </section>
 <section id="knn" class="level2">
 <h2 class="anchored" data-anchor-id="knn">KNN</h2>
-<div id="91875999" class="cell" data-execution_count="84">
+<div id="91875999" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define the Pipeline</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>knn_pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor),</span>
@@ -2031,7 +2017,7 @@ MAE:      0.59 medals</code></pre>
 </section>
 <section id="random-forrest" class="level2">
 <h2 class="anchored" data-anchor-id="random-forrest">Random Forrest</h2>
-<div id="9913d7ad" class="cell" data-execution_count="79">
+<div id="9913d7ad" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define the Pipeline</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rf_pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor),</span>
@@ -2149,7 +2135,7 @@ RMSE:     1.70 medals
 MAE:      0.60 medals</code></pre>
 </div>
 </div>
-<div id="05cae1b5" class="cell" data-execution_count="85">
+<div id="05cae1b5" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Extract the specific pieces from your best pipeline</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># best_rf is your Pipeline object. We need the preprocessor and the actual Random Forest model.</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> best_rf.named_steps[<span class="st">'preprocessor'</span>]</span>
@@ -2187,7 +2173,7 @@ MAE:      0.60 medals</code></pre>
 </section>
 <section id="hist-grad-boost" class="level2">
 <h2 class="anchored" data-anchor-id="hist-grad-boost">Hist Grad Boost</h2>
-<div id="92d719ab" class="cell" data-execution_count="87">
+<div id="92d719ab" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>num_transformer_impute <span class="op">=</span> Pipeline([</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'imputer'</span>, SimpleImputer(strategy<span class="op">=</span><span class="st">'median'</span>)),</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'scaler'</span>, StandardScaler())</span>
@@ -2314,7 +2300,7 @@ MAE:      0.60 medals</code></pre>
 </section>
 <section id="comparison" class="level2">
 <h2 class="anchored" data-anchor-id="comparison">Comparison</h2>
-<div id="676fabb1" class="cell" data-execution_count="88">
+<div id="676fabb1" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Extract ALL targets for the winning HistGradient model</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>hist_name <span class="op">=</span> <span class="st">"HistGradient (WITH Imputer)"</span></span>
@@ -2422,7 +2408,7 @@ Bronze_MAE                   0.620  </code></pre>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<div id="67400c6a" class="cell" data-execution_count="93">
+<div id="67400c6a" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Isolate the 2024 sport-level data to act as our launch pad</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_2024 <span class="op">=</span> df_sport[df_sport[<span class="st">'Year'</span>] <span class="op">==</span> <span class="dv">2024</span>].copy()</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2563,7 +2549,7 @@ Great Britain              32                42                33              1
  South Africa               6                 5                 5               19</code></pre>
 </div>
 </div>
-<div id="501615e4" class="cell" data-execution_count="94">
+<div id="501615e4" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the data for the Top 10</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>top_10_countries <span class="op">=</span> country_leaderboard.head(<span class="dv">10</span>).copy()</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2586,7 +2572,7 @@ Great Britain              32                42                33              1
 <span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_6336\3573571813.py:20: UserWarning: Glyph 127942 (\N{TROPHY}) missing from font(s) Arial.
+<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_17044\3573571813.py:20: UserWarning: Glyph 127942 (\N{TROPHY}) missing from font(s) Arial.
 c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtools.py:170: UserWarning: Glyph 127942 (\N{TROPHY}) missing from font(s) Arial.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2597,7 +2583,7 @@ c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtool
 </div>
 </div>
 </div>
-<div id="bfa450dc" class="cell" data-execution_count="96">
+<div id="bfa450dc" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Prepare the Top 20 data</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We use the top_events dataframe we created in the previous step</span></span>
@@ -2613,28 +2599,36 @@ c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtool
 <span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>bronze <span class="op">=</span> top_20_events[<span class="st">'Predicted_Bronze'</span>].values</span>
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>y_pos <span class="op">=</span> np.arange(<span class="bu">len</span>(labels))</span>
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Create the stacked bar chart</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Create the stacked bar chart using an explicit axes object</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
 <span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Bronze first, then stack Silver on top, then Gold on top of that</span></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>plt.barh(y_pos, bronze, color<span class="op">=</span><span class="st">'#CD7F32'</span>, label<span class="op">=</span><span class="st">'Bronze'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>plt.barh(y_pos, silver, left<span class="op">=</span>bronze, color<span class="op">=</span><span class="st">'#C0C0C0'</span>, label<span class="op">=</span><span class="st">'Silver'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>plt.barh(y_pos, gold, left<span class="op">=</span>bronze <span class="op">+</span> silver, color<span class="op">=</span><span class="st">'#FFD700'</span>, label<span class="op">=</span><span class="st">'Gold'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Bronze first, then stack Silver, then Gold, saving each to a variable</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>bronze_bars <span class="op">=</span> ax.barh(y_pos, bronze, color<span class="op">=</span><span class="st">'#CD7F32'</span>, label<span class="op">=</span><span class="st">'Bronze'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>silver_bars <span class="op">=</span> ax.barh(y_pos, silver, left<span class="op">=</span>bronze, color<span class="op">=</span><span class="st">'#C0C0C0'</span>, label<span class="op">=</span><span class="st">'Silver'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>gold_bars <span class="op">=</span> ax.barh(y_pos, gold, left<span class="op">=</span>bronze <span class="op">+</span> silver, color<span class="op">=</span><span class="st">'#FFD700'</span>, label<span class="op">=</span><span class="st">'Gold'</span>, edgecolor<span class="op">=</span><span class="st">'white'</span>)</span>
 <span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add styling and labels</span></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>plt.yticks(y_pos, labels, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>plt.gca().invert_yaxis()  <span class="co"># Highest gold count at the top</span></span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Projected Number of Medals'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'🔥 Top 20 Projected Events for 2028: Country + Sport Dominance 🔥'</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">"Medal Type"</span>, loc<span class="op">=</span><span class="st">'lower right'</span>, frameon<span class="op">=</span><span class="va">True</span>, shadow<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Add gridlines for the X-axis to make it easier to read counts</span></span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>plt.grid(axis<span class="op">=</span><span class="st">'x'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="co"># --- NEW: Add the numbers to the center of each bar section ---</span></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="co"># The lambda function ensures that '0' values are left blank for a cleaner look</span></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>ax.bar_label(bronze_bars, label_type<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'white'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fmt<span class="op">=</span><span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:g}</span><span class="ss">'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span>)</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>ax.bar_label(silver_bars, label_type<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'black'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fmt<span class="op">=</span><span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:g}</span><span class="ss">'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span>)</span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>ax.bar_label(gold_bars, label_type<span class="op">=</span><span class="st">'center'</span>, color<span class="op">=</span><span class="st">'black'</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, fmt<span class="op">=</span><span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:g}</span><span class="ss">'</span> <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">''</span>)</span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Add styling and labels</span></span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>ax.set_yticks(y_pos)</span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>ax.set_yticklabels(labels, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()  <span class="co"># Highest gold count at the top</span></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Projected Number of Medals'</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'🔥 Top 20 Projected Events for 2028: Country + Sport Dominance 🔥'</span>, fontsize<span class="op">=</span><span class="dv">16</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">"Medal Type"</span>, loc<span class="op">=</span><span class="st">'lower right'</span>, frameon<span class="op">=</span><span class="va">True</span>, shadow<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Add gridlines for the X-axis to make it easier to read counts</span></span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">'x'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_6336\2690628595.py:33: UserWarning: Glyph 128293 (\N{FIRE}) missing from font(s) Arial.
+<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_17044\1294694307.py:41: UserWarning: Glyph 128293 (\N{FIRE}) missing from font(s) Arial.
 c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtools.py:170: UserWarning: Glyph 128293 (\N{FIRE}) missing from font(s) Arial.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2645,7 +2639,7 @@ c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtool
 </div>
 </div>
 </div>
-<div id="f90a1fc3" class="cell" data-execution_count="98">
+<div id="f90a1fc3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Calculate the 'Improvement' so we can find the biggest jumpers</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># In your model, 'Lag_1_Total_Medals' is the actual 2024 count</span></span>
@@ -2684,7 +2678,7 @@ c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtool
 <span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_6336\2766890981.py:35: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) Arial.
+<pre><code>C:\Users\cjfoo\AppData\Local\Temp\ipykernel_17044\2766890981.py:35: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) Arial.
 c:\Users\cjfoo\miniforge3\envs\math4025\Lib\site-packages\IPython\core\pylabtools.py:170: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) Arial.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
