@@ -11,7 +11,7 @@ format:
     theme: sandstone
 ---
 ## Project Overview
-I have been given the task of predicting the 2028 summer olympics held in Las Angeles, California. This analysis utilizes historical athlete demographics, host-country advantages, and "efficiency" metrics to project which nations will lead the podium.
+I have been given the task of predicting the 2028 summer olympics held in Los Angeles, California. This analysis utilizes historical athlete demographics, host-country advantages, and "efficiency" metrics to project which nations will lead the podium.
 
 # Loading and Validating data
 The foundation of this model rests on four primary datasets: athlete-level details, historical host tracking, year-by-year medal counts, and Olympic programs.
@@ -775,3 +775,7 @@ sns.despine(left=True, bottom=True)
 plt.tight_layout()
 plt.show()
 ```
+
+## Improvement For Next Time
+
+For any future models it would be great if there was a document that had all the financial details about each country and how much money they poured into their Olympic programs.
